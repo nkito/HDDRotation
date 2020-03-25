@@ -1,3 +1,6 @@
+// HDD Rotation program 
+
+// Definition of pins
 const int MOTOR_1   = 2;
 const int MOTOR_2   = 3;
 const int MOTOR_3   = 4;
@@ -8,8 +11,9 @@ const int LED_G     = 10;
 const int LED_B     = 11;
 
 
-const int start_delay  = 30000;
-const int stable_delay = 800; // max 800
+// delay for controlling the motor [micro seconds]
+const int start_delay  = 30000;  // initial delay
+const int stable_delay = 800;    // target delay (minimum delay is 800 in my experiment)
 
 void setup() {
   pinMode(MOTOR_1, OUTPUT);
@@ -25,9 +29,10 @@ void setup() {
   digitalWrite( MOTOR_2,  LOW);
   digitalWrite( MOTOR_3,  LOW);
 
-  digitalWrite( LED_R,  LOW);
-  digitalWrite( LED_G,  LOW);
-  digitalWrite( LED_B,  LOW);
+  digitalWrite(     LED_R, LOW);
+  digitalWrite(     LED_G, LOW);
+  digitalWrite(     LED_B, LOW);
+  digitalWrite( LED_BOARD, LOW);
 }
 
 
@@ -58,10 +63,12 @@ void ledctl(int col){
 
 
 void spinup(void){
-  int s=start_delay;
-  int d, i;
+  int s = start_delay; // delay in micro seconds
+  int d;               // delay in [ms]
+  int i;
 
   do{
+    d = s/1000;
     for(i=1; i<=3; i++){
       motorctl(i);
       if( d < 10 ){
@@ -76,52 +83,49 @@ void spinup(void){
       s = s - 100;
     }else if(s > 2000){
       s = s - 10;
-    }else if(s - 10 >= stable_delay ){
-      s = s - 1;
     }else{
-      s = stable_delay;
+      s = s - 1;
     }
-    d = s/1000;
   }while( s > stable_delay );
 }
 
 void stable_rot1(int d, int count){
-  int i, s, loop = 0;
+  int i, t;
   unsigned long start = 0, current;
   
   while(1){
     current = millis();
     if(start == 0) start = current;
-    s = (current - start) / d;
+    
+    t = (current - start) / d;
+    
     for(i=0; i<3*6; i++){
       motorctl((i%3)+1);
       delayMicroseconds(stable_delay);
-      ledctl(i + s);
+      ledctl(i + t);
     }
-    if( s == count ){
+    if( t == count ){
       return;
     }
   }
 }
 
 void stable_rot2(int fgcolor, int bgcolor, int d, int count){
-  int i, s, t, rad = 0, loop = 0;
+  int i, rad, loop = 0;
   unsigned long start = 0, current;
 
   while(1){
     current = millis();
     if( start == 0 ) start = current;
+
     rad = (current - start) / d;
+    
     for(i=0; i<3*6; i++){
       motorctl((i%3)+1);
       delayMicroseconds(stable_delay);
-      if( i < rad ){
-        ledctl(fgcolor);
-      }else{
-        ledctl(bgcolor);
-      }
+      ledctl( (i < rad) ? fgcolor : bgcolor );
     }
-    if(rad == 3*6+2){
+    if(rad > 3*6){
       if(++loop >= count){
         return;
       }
@@ -134,11 +138,14 @@ void stable_rot2(int fgcolor, int bgcolor, int d, int count){
 }
 
 void loop() {
-  spinup();
   int color=1;
+
+  spinup();
+
   while(1){
     stable_rot1(250, 18);
     stable_rot2(color, 0, 50, 4);
     if( ++color == 8 ){ color = 1; }
   }
+  
 }
