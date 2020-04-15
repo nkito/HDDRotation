@@ -1,6 +1,6 @@
 # HDDRotation
 
-It is a illumination utilizeing HDD rotation.
+It is a illumination utilizing HDD rotation.
 
 
 
