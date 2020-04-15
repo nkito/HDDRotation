@@ -2,8 +2,12 @@
 
 It is a illumination utilizing HDD rotation.
 
+![illumination](images/illumi.jpg)
 
 
+## Overview
+
+![parts](images/structure.jpg)
 
 ## Parts
 
@@ -11,6 +15,10 @@ It is a illumination utilizing HDD rotation.
 * Arduino Uno
 * Transistor Array 2003A
 * Case printed out with a 3D printer
+* Full color LEDs
+
+![parts](images/parts.jpg)
+
 
 ## Schematic 
 
