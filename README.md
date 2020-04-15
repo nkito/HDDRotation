@@ -1,6 +1,6 @@
 # HDDRotation
 
-It is a illumination utilizing HDD rotation.
+It is an illumination utilizing HDD rotation.
 
 ![illumination](images/illumi.jpg)
 
