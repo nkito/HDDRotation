@@ -28,6 +28,7 @@ Stable images are observed due to the characteristics of the human eye.
 * Full color LEDs
 * Some resistors
 * Case printed out with a 3D printer
+* Screws (M3)
 
 ![parts](images/parts.jpg)
 
