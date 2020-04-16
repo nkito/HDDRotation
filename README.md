@@ -10,8 +10,8 @@
 
 ## Operating principle
 
-Light from the LEDs illuminates the strip of post-it.
-The rotation of the strip and light from the LEDs are synchronized.
+The light from the LEDs illuminates the strip of post-it.
+The rotation of the strip and the light from the LEDs are synchronized.
 In other words, the color of the LEDs varies depending on the position of the strip.
 Stable images are observed due to the characteristics of the human eye.
 
@@ -24,9 +24,10 @@ Stable images are observed due to the characteristics of the human eye.
 
 * 2.5-inch HDD
 * Arduino Uno
-* Transistor Array 2003A
-* Case printed out with a 3D printer
+* Transistor Array 2003A (such as TD62003APG(Toshiba), ULN2003AN(TI))
 * Full color LEDs
+* Some resistors
+* Case printed out with a 3D printer
 
 ![parts](images/parts.jpg)
 
