@@ -1,15 +1,26 @@
-# HDDRotation
-
-It is an illumination utilizing HDD rotation.
+# HDDRotation - illumination utilizing HDD rotation.
 
 ![illumination](images/illumi.jpg)
 
 
 ## Overview
 
+![parts](images/overview.jpg)
+
+
+## Operating principle
+
+Light from the LEDs illuminates the strip of post-it.
+The rotation of the strip and light from the LEDs are synchronized.
+In other words, the color of the LEDs varies depending on the position of the strip.
+Stable images are observed due to the characteristics of the human eye.
+
 ![parts](images/structure.jpg)
 
-## Parts
+
+## Hardware
+
+### Parts
 
 * 2.5-inch HDD
 * Arduino Uno
@@ -20,11 +31,11 @@ It is an illumination utilizing HDD rotation.
 ![parts](images/parts.jpg)
 
 
-## Schematic 
+### Schematic 
 
 ![Schematic](schematic/HDDRotation.pdf) 
 
-## Case
+### Case
 
 ![Case](3DModel/HDDcase.stl)
 
